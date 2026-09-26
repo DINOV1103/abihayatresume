@@ -75,6 +75,17 @@ a{color:inherit}
 .card-intro{margin:0 0 6px;font-size:21px;font-weight:600;letter-spacing:-.01em}
 .card-sub{margin:0 0 8px;color:var(--muted);font-size:15px}
 
+/* Job conditions */
+.perks-title{margin:0 0 16px;font-size:21px;font-weight:600;letter-spacing:-.01em}
+.perks{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:14px}
+@media(min-width:560px){.perks{grid-template-columns:1fr 1fr;gap:16px 22px}.perks li.wide{grid-column:1/-1}}
+.perks li{display:flex;gap:13px;align-items:flex-start}
+.perks .ic{flex:none;width:40px;height:40px;border-radius:11px;background:var(--sage);display:grid;place-items:center}
+.perks .ic svg{width:21px;height:21px;stroke:var(--olive);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.perks b{display:block;font-weight:600;font-size:15.5px;margin-bottom:2px}
+.perks span{display:block;color:var(--muted);font-size:14.5px;line-height:1.45}
+.divider{height:1px;background:var(--line);margin:0 0 26px}
+
 fieldset{border:0;margin:0;padding:26px 0 4px;border-top:1px solid var(--line);margin-top:22px}
 legend{float:left;width:100%;padding:0;margin:0 0 16px;font-size:15px;font-weight:600;color:var(--leaf)}
 legend+*{clear:both}
@@ -184,11 +195,39 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 36p
       <li><strong>17–30</strong> yosh</li>
       <li>Oʻgʻil va qizlar</li>
       <li><strong>3</strong> xil ish vaqti</li>
+      <li>KPI + bonuslar</li>
     </ul>
   </div>
 </header>
 
 <main class="card" id="card">
+  <section aria-labelledby="perksTitle">
+    <h2 class="perks-title" id="perksTitle">Ish sharoitlari</h2>
+    <ul class="perks">
+      <li class="wide">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/></svg></div>
+        <div><b>Nima sotiladi</b><span>Biologik faol qoʻshimchalar (BAD) va vitaminlar.</span></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg></div>
+        <div><b>KPI tizimida maosh</b><span>Fiksa ish smenangizga qarab belgilanadi, ustiga bonuslar.</span></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 11h16a8 8 0 0 1-16 0zM8 4v3M12 3v4M16 4v3"/></svg></div>
+        <div><b>Bepul tushlik</b><span>Ishxona tomonidan har kuni obed beriladi.</span></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></div>
+        <div><b>Oʻqitish kursi</b><span>Malakali sotuv rahbarlari nazariy va amaliy tomondan oʻrgatadi.</span></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <div><b>Dam olish</b><span>Haftada 1 kun dam olish kuni.</span></div>
+      </li>
+    </ul>
+  </section>
+  <div class="divider"></div>
+
   <form id="form" novalidate>
     <h2 class="card-intro">Oʻzingiz haqingizda maʼlumot toʻldiring</h2>
     <p class="card-sub">Anketa 2–3 daqiqa vaqt oladi.</p>
@@ -370,7 +409,7 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 36p
     if (phone.length!==9) fail("phone",$("phone"));
     var age = dob ? ageOf(dob) : null;
     if (!dob || age===null){ $("dobErr").textContent="Tugʻilgan sanangizni tanlang."; fail("dob",$("dob")); }
-    else if (age<MIN_AGE || age>MAX_AGE){ $("dobErr").textContent="Vakansiya 17 yoshdan 30 yoshgacha boʻlganlar uchun."; fail("dob",$("dob")); }
+    else if (age<MIN_AGE || age>MAX_AGE){ $("dobErr").textContent="Afsuski, bu vakansiya faqat 17 yoshdan 30 yoshgacha boʻlganlar uchun. Anketa yuborilmaydi."; fail("dob",$("dob")); }
     if (addr.length<3) fail("addr",$("addr"));
     if (!study) fail("study",$("st-yes"));
     else if (study==="Ha" && school.length<2) fail("study",$("school"));
@@ -396,6 +435,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 36p
       "💼 <b>Ish faoliyati:</b> "+esc(exp)+"\n"+
       "🕘 <b>Ish vaqti:</b> "+shift+"\n\n"+
       "🕓 "+now;
+
+    /* Yakuniy tekshiruv: 17 yoshdan kichik va 30 yoshdan kattalar botga yuborilmaydi */
+    if (age===null || age<MIN_AGE || age>MAX_AGE) return;
 
     var btn = $("submit");
     btn.disabled = true; btn.classList.add("loading"); $("btnText").textContent = "Yuborilmoqda…";
