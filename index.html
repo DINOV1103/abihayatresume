@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ABIHAYAT — Sotuv menejeri vakansiyasi</title>
+<meta name="description" content="ABIHAYAT kompaniyasi 17 yoshdan 30 yoshgacha boʻlgan oʻgʻil va qizlarni sotuv menejeri lavozimiga taklif qiladi.">
+<meta name="theme-color" content="#2C3B24">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232C3B24'/><path d='M32 12c-9 10-13 18-13 25a13 13 0 0 0 26 0c0-7-4-15-13-25z' fill='%23C9D3B4'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1D2619;
+  --olive:#2C3B24;
+  --leaf:#5C7442;
+  --sage:#E7ECDD;
+  --paper:#F8F9F4;
+  --white:#FFFFFF;
+  --line:#D6DCC8;
+  --muted:#5F6A58;
+  --gold:#B08A3E;
+  --err:#B3261E;
+  --radius-lg:20px;
+  --radius:12px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16px;line-height:1.55;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------- Hero ---------- */
+.hero{
+  background:var(--olive);color:#EEF2E6;
+  padding:28px 20px 96px;position:relative;overflow:hidden;
+}
+.hero::after{ /* olive leaf silhouette */
+  content:"";position:absolute;right:-60px;top:-40px;width:260px;height:340px;
+  background:radial-gradient(ellipse at 30% 30%,rgba(201,211,180,.16),rgba(201,211,180,0) 70%);
+  border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(28deg);pointer-events:none;
+}
+.wrap{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:44px}
+.brand svg{width:34px;height:34px;flex:none}
+.brand b{font-size:19px;letter-spacing:.14em;font-weight:700}
+.brand span{display:block;font-size:12.5px;color:#B9C4A6;letter-spacing:.02em;margin-top:-2px}
+.hero h1{
+  font-size:clamp(32px,8.5vw,48px);line-height:1.06;font-weight:700;
+  letter-spacing:-.02em;margin:0 0 18px;max-width:14ch;
+}
+.hero p{margin:0;font-size:17px;color:#D5DDC7;max-width:52ch}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0;list-style:none}
+.facts li{
+  border:1px solid rgba(213,221,199,.28);border-radius:999px;
+  padding:7px 14px;font-size:14px;color:#E6ECDB;
+}
+.facts strong{color:#fff;font-weight:600}
+
+/* ---------- Form card ---------- */
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  margin:-64px 16px 0;padding:26px 20px 28px;position:relative;z-index:2;
+  box-shadow:0 18px 40px -24px rgba(29,38,25,.35);
+}
+@media(min-width:680px){.card{margin:-64px auto 0;max-width:640px;padding:36px 36px 36px}}
+.card-intro{margin:0 0 6px;font-size:21px;font-weight:600;letter-spacing:-.01em}
+.card-sub{margin:0 0 8px;color:var(--muted);font-size:15px}
+
+fieldset{border:0;margin:0;padding:26px 0 4px;border-top:1px solid var(--line);margin-top:22px}
+legend{float:left;width:100%;padding:0;margin:0 0 16px;font-size:15px;font-weight:600;color:var(--leaf)}
+legend+*{clear:both}
+
+.field{margin-bottom:18px}
+.field:last-child{margin-bottom:10px}
+label.lbl,.lbl{display:block;font-weight:500;font-size:15px;margin-bottom:7px}
+.opt{font-weight:400;color:var(--muted);font-size:13.5px}
+.hint{font-size:13.5px;color:var(--muted);margin-top:6px}
+
+input[type=text],input[type=tel],input[type=date],textarea{
+  width:100%;font:inherit;color:var(--ink);background:var(--paper);
+  border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:13px 14px;min-height:50px;appearance:none;-webkit-appearance:none;
+  transition:border-color .15s,background .15s;
+}
+textarea{min-height:104px;resize:vertical;line-height:1.5}
+input:focus,textarea:focus{outline:none;border-color:var(--leaf);background:#fff;box-shadow:0 0 0 3px rgba(92,116,66,.14)}
+input::placeholder,textarea::placeholder{color:#98A08F}
+input[type=date]{display:block;text-align:left}
+input[type=date]::-webkit-date-and-time-value{text-align:left}
+input[type=date]::-webkit-calendar-picker-indicator{opacity:.65;cursor:pointer}
+
+.tel{display:flex;align-items:stretch}
+.tel .pre{
+  display:flex;align-items:center;padding:0 12px;border:1.5px solid var(--line);border-right:0;
+  border-radius:var(--radius) 0 0 var(--radius);background:var(--sage);font-weight:500;color:var(--olive)
+}
+.tel input{border-radius:0 var(--radius) var(--radius) 0}
+
+.invalid input,.invalid textarea,.invalid .seg,.invalid .shifts{border-color:var(--err)!important}
+.invalid .tel .pre{border-color:var(--err)}
+.err{display:none;color:var(--err);font-size:13.5px;margin-top:6px}
+.invalid .err{display:block}
+
+/* Segmented yes/no */
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--paper)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{text-align:center;padding:12px 8px;cursor:pointer;font-weight:500;min-height:48px;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+.seg label+input+label,.seg input+label+input+label{border-left:1.5px solid var(--line)}
+.seg input:checked+label{background:var(--olive);color:#fff}
+.seg input:focus-visible+label{outline:3px solid var(--gold);outline-offset:-3px}
+.reveal{display:none;margin-top:12px}
+.reveal.on{display:block;animation:open .22s ease-out}
+@keyframes open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* Shift timeline — the signature element */
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:0 16px 6px;font-variant-numeric:tabular-nums}
+.shifts{display:grid;gap:10px;border:1.5px solid transparent;border-radius:var(--radius)}
+.shift input{position:absolute;opacity:0;pointer-events:none}
+.shift label{
+  display:block;cursor:pointer;border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px 16px;background:var(--paper);transition:border-color .15s,background .15s;
+}
+.shift .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:11px}
+.shift .time{font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.shift .dur{font-size:13.5px;color:var(--muted)}
+.track{position:relative;height:8px;border-radius:99px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(25%));background-color:#EEF1E7}
+.track i{position:absolute;top:0;bottom:0;border-radius:99px;background:var(--leaf);opacity:.55;transition:opacity .15s,background .15s}
+.shift input:checked+label{border-color:var(--olive);background:#fff;box-shadow:0 0 0 3px rgba(44,59,36,.12)}
+.shift input:checked+label .track i{background:var(--olive);opacity:1}
+.shift input:focus-visible+label{outline:3px solid var(--gold);outline-offset:2px}
+
+/* Submit */
+.consent{
+  margin:26px 0 18px;padding:16px 16px;border-radius:var(--radius);
+  background:var(--sage);color:var(--olive);font-size:15px;line-height:1.5
+}
+.btn{
+  width:100%;min-height:56px;border:0;border-radius:var(--radius);cursor:pointer;
+  background:var(--olive);color:#fff;font:inherit;font-size:17px;font-weight:600;letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .1s;
+}
+.btn:hover{background:#243120}
+.btn:active{transform:scale(.99)}
+.btn[disabled]{opacity:.7;cursor:progress}
+.spin{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;display:none}
+.btn.loading .spin{display:block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.form-err{display:none;margin-top:12px;color:var(--err);font-size:14.5px;text-align:center}
+.form-err.on{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Success */
+.done{display:none;text-align:center;padding:18px 4px 8px}
+.done.on{display:block;animation:open .3s ease-out}
+.done .mark{width:68px;height:68px;border-radius:50%;background:var(--sage);display:grid;place-items:center;margin:0 auto 18px}
+.done h2{margin:0 0 10px;font-size:24px;letter-spacing:-.01em}
+.done p{margin:0 auto;color:var(--muted);max-width:40ch}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 36px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#3E5231"/><path d="M32 12c-9 10-13 18-13 25a13 13 0 0 0 26 0c0-7-4-15-13-25z" fill="#C9D3B4"/><path d="M32 26v24" stroke="#3E5231" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <div><b>ABIHAYAT</b><span>Kadrlar boʻlimi</span></div>
+    </div>
+    <h1>Sotuv menejeri lavozimiga ishga qabul</h1>
+    <p>Assalomu alaykum! ABIHAYAT kompaniyasi 17 yoshdan 30 yoshgacha boʻlgan oʻgʻil va qizlarni sotuv menejeri lavozimiga taklif qiladi.</p>
+    <ul class="facts">
+      <li><strong>17–30</strong> yosh</li>
+      <li>Oʻgʻil va qizlar</li>
+      <li><strong>3</strong> xil ish vaqti</li>
+    </ul>
+  </div>
+</header>
+
+<main class="card" id="card">
+  <form id="form" novalidate>
+    <h2 class="card-intro">Oʻzingiz haqingizda maʼlumot toʻldiring</h2>
+    <p class="card-sub">Anketa 2–3 daqiqa vaqt oladi.</p>
+
+    <fieldset>
+      <legend>Shaxsiy maʼlumotlar</legend>
+
+      <div class="field" data-f="name">
+        <label class="lbl" for="name">Ism va familiya</label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="Masalan: Aziza Karimova" maxlength="80">
+        <div class="err">Ism va familiyangizni yozing.</div>
+      </div>
+
+      <div class="field" data-f="phone">
+        <label class="lbl" for="phone">Telefon raqam</label>
+        <div class="tel">
+          <span class="pre">+998</span>
+          <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel-national" placeholder="90 123 45 67" maxlength="12">
+        </div>
+        <div class="err">Telefon raqamni toʻliq kiriting (9 ta raqam).</div>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="tg">Telegram username <span class="opt">— ixtiyoriy</span></label>
+        <input type="text" id="tg" name="tg" autocomplete="off" autocapitalize="off" placeholder="@username" maxlength="40">
+      </div>
+
+      <div class="field" data-f="dob">
+        <label class="lbl" for="dob">Tugʻilgan sana</label>
+        <input type="date" id="dob" name="dob">
+        <div class="hint" id="ageHint">Kalendardan kun, oy va yilni tanlang.</div>
+        <div class="err" id="dobErr">Tugʻilgan sanangizni tanlang.</div>
+      </div>
+
+      <div class="field" data-f="addr">
+        <label class="lbl" for="addr">Hozirgi yashash manzilingiz</label>
+        <input type="text" id="addr" name="addr" autocomplete="street-address" placeholder="Shahar, tuman, mahalla yoki koʻcha" maxlength="160">
+        <div class="err">Yashash manzilingizni yozing.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Taʼlim va tajriba</legend>
+
+      <div class="field" data-f="study">
+        <span class="lbl" id="studyLbl">Oʻqiysizmi?</span>
+        <div class="seg" role="radiogroup" aria-labelledby="studyLbl">
+          <input type="radio" name="study" id="st-yes" value="Ha"><label for="st-yes">Ha, oʻqiyman</label>
+          <input type="radio" name="study" id="st-no" value="Yoʻq"><label for="st-no">Yoʻq</label>
+        </div>
+        <div class="err">Variantlardan birini tanlang.</div>
+        <div class="reveal" id="studyWhere">
+          <label class="lbl" for="school">Qayerda oʻqiysiz?</label>
+          <input type="text" id="school" name="school" placeholder="Oʻquv yurti, fakultet, kurs" maxlength="140">
+          <div class="err">Qayerda oʻqishingizni yozing.</div>
+        </div>
+      </div>
+
+      <div class="field" data-f="exp">
+        <label class="lbl" for="exp">Ish faoliyatingiz</label>
+        <textarea id="exp" name="exp" maxlength="800" placeholder="Qayerda, qaysi lavozimda va qancha muddat ishlagansiz. Tajriba boʻlmasa, «Tajribam yoʻq» deb yozing."></textarea>
+        <div class="err">Ish faoliyatingiz haqida qisqacha yozing.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Sizga qaysi ish vaqti toʻgʻri keladi?</legend>
+      <div class="field" data-f="shift">
+        <div class="scale" aria-hidden="true"><span>9:00</span><span>12:00</span><span>15:00</span><span>18:00</span><span>21:00</span></div>
+        <div class="shifts" role="radiogroup" aria-label="Ish vaqti">
+          <div class="shift">
+            <input type="radio" name="shift" id="sh1" value="09:00 – 16:00">
+            <label for="sh1"><div class="top"><span class="time">09:00 – 16:00</span><span class="dur">7 soat</span></div><div class="track"><i style="left:0;width:58.33%"></i></div></label>
+          </div>
+          <div class="shift">
+            <input type="radio" name="shift" id="sh2" value="09:00 – 19:00">
+            <label for="sh2"><div class="top"><span class="time">09:00 – 19:00</span><span class="dur">10 soat</span></div><div class="track"><i style="left:0;width:83.33%"></i></div></label>
+          </div>
+          <div class="shift">
+            <input type="radio" name="shift" id="sh3" value="15:00 – 21:00">
+            <label for="sh3"><div class="top"><span class="time">15:00 – 21:00</span><span class="dur">6 soat</span></div><div class="track"><i style="left:50%;width:50%"></i></div></label>
+          </div>
+        </div>
+        <div class="err">Oʻzingizga mos ish vaqtini tanlang.</div>
+      </div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" id="website" tabindex="-1" autocomplete="off"></label></div>
+
+    <div class="consent">Agar sizga shartlar toʻgʻri kelsa, «Yuborish» tugmasini bosing. Maʼlumotlaringizni oʻrganib chiqib, siz bilan bogʻlanamiz!</div>
+
+    <button class="btn" type="submit" id="submit"><span class="spin" aria-hidden="true"></span><span id="btnText">Yuborish</span></button>
+    <div class="form-err" id="formErr" role="alert"></div>
+  </form>
+
+  <section class="done" id="done" aria-live="polite">
+    <div class="mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2C3B24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>Maʼlumotlaringiz yuborildi</h2>
+    <p>Rahmat! Anketangizni oʻrganib chiqib, koʻrsatgan telefon raqamingiz orqali siz bilan bogʻlanamiz.</p>
+  </section>
+</main>
+
+<footer>© <span id="yr"></span> ABIHAYAT. Barcha huquqlar himoyalangan.</footer>
+
+<script>
+(function(){
+  /* ===== Sozlamalar ===== */
+  var BOT_TOKEN = "8920692300:AAHUHgV_gU0ruEN6-T9_p0_SJHNfSkiauKE";
+  var CHAT_ID   = "8854944670";
+  var MIN_AGE = 17, MAX_AGE = 30;
+
+  var $ = function(id){return document.getElementById(id)};
+  var form = $("form");
+  $("yr").textContent = new Date().getFullYear();
+
+  /* --- Tugʻilgan sana chegaralari (17–30 yosh) --- */
+  function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+  var today = new Date(); today.setHours(0,0,0,0);
+  var maxD = new Date(today); maxD.setFullYear(today.getFullYear()-MIN_AGE);
+  var minD = new Date(today); minD.setFullYear(today.getFullYear()-MAX_AGE-1); minD.setDate(minD.getDate()+1);
+  $("dob").max = iso(maxD); $("dob").min = iso(minD);
+
+  function ageOf(v){
+    var b = new Date(v+"T00:00:00"); if (isNaN(b)) return null;
+    var a = today.getFullYear()-b.getFullYear();
+    var m = today.getMonth()-b.getMonth();
+    if (m<0 || (m===0 && today.getDate()<b.getDate())) a--;
+    return a;
+  }
+  $("dob").addEventListener("change", function(){
+    var a = ageOf(this.value);
+    $("ageHint").textContent = a!==null ? "Yoshingiz: "+a : "Kalendardan kun, oy va yilni tanlang.";
+    clear("dob");
+  });
+
+  /* --- Telefon formati: 90 123 45 67 --- */
+  $("phone").addEventListener("input", function(){
+    var d = this.value.replace(/\D/g,"");
+    if (d.indexOf("998")===0 && d.length>9) d = d.slice(3);
+    d = d.slice(0,9);
+    var out = d.slice(0,2);
+    if (d.length>2) out += " "+d.slice(2,5);
+    if (d.length>5) out += " "+d.slice(5,7);
+    if (d.length>7) out += " "+d.slice(7,9);
+    this.value = out; clear("phone");
+  });
+
+  /* --- Oʻqiysizmi? --- */
+  form.querySelectorAll('input[name=study]').forEach(function(r){
+    r.addEventListener("change", function(){
+      $("studyWhere").classList.toggle("on", this.value==="Ha");
+      clear("study");
+      if (this.value==="Ha") setTimeout(function(){$("school").focus()},60);
+    });
+  });
+  form.querySelectorAll('input[name=shift]').forEach(function(r){ r.addEventListener("change", function(){clear("shift")}) });
+  ["name","addr","exp","school"].forEach(function(id){ $(id).addEventListener("input", function(){clear(id==="school"?"study":id)}) });
+
+  function box(f){return form.querySelector('[data-f="'+f+'"]')}
+  function bad(f){box(f).classList.add("invalid")}
+  function clear(f){var b=box(f); if(b) b.classList.remove("invalid")}
+  function val(id){return $(id).value.trim()}
+  function checked(n){var e=form.querySelector('input[name='+n+']:checked'); return e?e.value:""}
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    $("formErr").classList.remove("on");
+    if (val("website")) return; // spam bot
+
+    var ok = true, first = null;
+    function fail(f,el){ bad(f); ok=false; if(!first) first=el; }
+
+    var name = val("name"), phone = $("phone").value.replace(/\D/g,""), tg = val("tg").replace(/^@+/,""),
+        dob = $("dob").value, addr = val("addr"), study = checked("study"), school = val("school"),
+        exp = val("exp"), shift = checked("shift");
+
+    if (name.length<3) fail("name",$("name"));
+    if (phone.length!==9) fail("phone",$("phone"));
+    var age = dob ? ageOf(dob) : null;
+    if (!dob || age===null){ $("dobErr").textContent="Tugʻilgan sanangizni tanlang."; fail("dob",$("dob")); }
+    else if (age<MIN_AGE || age>MAX_AGE){ $("dobErr").textContent="Vakansiya 17 yoshdan 30 yoshgacha boʻlganlar uchun."; fail("dob",$("dob")); }
+    if (addr.length<3) fail("addr",$("addr"));
+    if (!study) fail("study",$("st-yes"));
+    else if (study==="Ha" && school.length<2) fail("study",$("school"));
+    if (exp.length<2) fail("exp",$("exp"));
+    if (!shift) fail("shift",$("sh1"));
+
+    if (!ok){
+      first.scrollIntoView({behavior:"smooth",block:"center"});
+      setTimeout(function(){first.focus({preventScroll:true})},300);
+      return;
+    }
+
+    var p = dob.split("-"), dobTxt = p[2]+"."+p[1]+"."+p[0];
+    var now = new Date().toLocaleString("ru-RU",{timeZone:"Asia/Tashkent",day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});
+    var text =
+      "📋 <b>YANGI REZYUME — SOTUV MENEJERI</b>\n\n"+
+      "👤 <b>Ism:</b> "+esc(name)+"\n"+
+      "📞 <b>Telefon:</b> +998"+phone+"\n"+
+      (tg ? "✈️ <b>Telegram:</b> @"+esc(tg)+"\n" : "")+
+      "🎂 <b>Tugʻilgan sana:</b> "+dobTxt+" ("+age+" yosh)\n"+
+      "📍 <b>Manzil:</b> "+esc(addr)+"\n"+
+      "🎓 <b>Oʻqiydimi:</b> "+(study==="Ha" ? "Ha — "+esc(school) : "Yoʻq")+"\n"+
+      "💼 <b>Ish faoliyati:</b> "+esc(exp)+"\n"+
+      "🕘 <b>Ish vaqti:</b> "+shift+"\n\n"+
+      "🕓 "+now;
+
+    var btn = $("submit");
+    btn.disabled = true; btn.classList.add("loading"); $("btnText").textContent = "Yuborilmoqda…";
+
+    fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({chat_id:CHAT_ID,text:text,parse_mode:"HTML"})
+    })
+    .then(function(r){return r.json()})
+    .then(function(res){
+      if (!res.ok) throw new Error(res.description||"error");
+      form.style.display = "none";
+      $("done").classList.add("on");
+      $("card").scrollIntoView({behavior:"smooth",block:"start"});
+    })
+    .catch(function(){
+      btn.disabled = false; btn.classList.remove("loading"); $("btnText").textContent = "Yuborish";
+      $("formErr").textContent = "Anketa yuborilmadi. Internet aloqasini tekshirib, qayta urinib koʻring.";
+      $("formErr").classList.add("on");
+    });
+  });
+})();
+</script>
+</body>
+</html>
